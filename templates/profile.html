@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">My uploads</h2>
+<section class="grid">
+  {% for n in notes %}
+  <article class="card">
+    <div class="card-badge">{{ n.category }}</div>
+    <h3 class="card-title">{{ n.title }}</h3>
+    <p class="card-desc">{{ n.description[:160] }}{% if n.description and n.description|length > 160 %}...{% endif %}</p>
+    <div class="card-meta">
+      <span>📅 {{ n.upload_date.strftime('%Y-%m-%d') }}</span>
+      <span>⬇️ {{ n.downloads }}</span>
+      <span>📄 .{{ n.file_ext() }}</span>
+    </div>
+    <div class="card-actions">
+      <a class="btn" href="{{ url_for('download', note_id=n.id) }}">Download</a>
+      <form method="post" action="{{ url_for('delete_note', note_id=n.id) }}" onsubmit="return confirm('Delete this note?');">
+        <button class="btn btn-danger" type="submit">Delete</button>
+      </form>
+    </div>
+  </article>
+  {% else %}
+  <div class="empty">You haven't uploaded any notes yet. <a href="{{ url_for('upload') }}">Upload one now.</a></div>
+  {% endfor %}
+</section>
+{% endblock %}

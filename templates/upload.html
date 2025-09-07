@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="auth-card">
+  <h2>Upload a note</h2>
+  <form method="post" enctype="multipart/form-data">
+    <label>Title</label>
+    <input type="text" name="title" required>
+    <label>Description</label>
+    <textarea name="description" rows="4" placeholder="Short description (optional)"></textarea>
+    <label>Category</label>
+    <select name="category" required>
+      {% for c in categories %}
+        <option value="{{ c }}">{{ c }}</option>
+      {% endfor %}
+    </select>
+    <label>File</label>
+    <input type="file" name="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.jpg,.jpeg,.png" required>
+    <button class="btn btn-primary" type="submit">Upload</button>
+  </form>
+</div>
+{% endblock %}

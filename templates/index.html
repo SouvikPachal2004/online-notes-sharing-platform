@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1 class="hero-title">Find and share study notes</h1>
+  <p class="hero-subtitle">Upload your notes and help others learn. Search by subject or keyword.</p>
+
+  <form class="search-bar" method="get" action="{{ url_for('index') }}">
+    <input type="text" name="q" placeholder="Search notes..." value="{{ q }}">
+    <select name="category">
+      <option value="">All categories</option>
+      {% for c in categories %}
+        <option value="{{ c }}" {% if selected_category==c %}selected{% endif %}>{{ c }}</option>
+      {% endfor %}
+    </select>
+    <select name="sort">
+      <option value="recent" {% if sort=='recent' %}selected{% endif %}>Most recent</option>
+      <option value="popular" {% if sort=='popular' %}selected{% endif %}>Most downloaded</option>
+    </select>
+    <button class="btn btn-primary" type="submit">Search</button>
+  </form>
+</section>
+
+<section class="grid">
+  {% for n in notes %}
+  <article class="card">
+    <div class="card-badge">{{ n.category }}</div>
+    <h3 class="card-title">{{ n.title }}</h3>
+    <p class="card-desc">{{ n.description[:160] }}{% if n.description and n.description|length > 160 %}...{% endif %}</p>
+    <div class="card-meta">
+      <span>📅 {{ n.upload_date.strftime('%Y-%m-%d') }}</span>
+      <span>⬇️ {{ n.downloads }}</span>
+      <span>🧑 {{ n.author.name }}</span>
+    </div>
+    <div class="card-actions">
+      <a class="btn" href="{{ url_for('download', note_id=n.id) }}">Download</a>
+    </div>
+  </article>
+  {% else %}
+  <div class="empty">No notes found. Try different keywords or upload your first note!</div>
+  {% endfor %}
+</section>
+{% endblock %}
