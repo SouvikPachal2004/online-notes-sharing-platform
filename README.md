@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Online Notes Sharing Platform
 
 A modern Flask-based web app where students can upload, categorize, search, and download study notes.
@@ -55,3 +56,36 @@ online-notes-platform/
 - Other
 
 > Tip: To change allowed file types or categories, edit `app.py` (sections marked UPPERCASE comments).
+=======
+# 📚 Online Notes Sharing Platform
+
+A modern web application that allows students to **upload, share, and download study notes**.  
+Built with **Flask, HTML, CSS, and JavaScript**.
+
+---
+
+## 🚀 Features
+- 👩‍🎓 Student registration & login  
+- 📤 Upload study notes (PDF, DOCX, PPT, etc.)  
+- 📂 Categorize and search notes  
+- 📥 Download notes securely  
+- 🔍 Search by title, subject, or category  
+- 🎨 Modern responsive UI  
+
+---
+
+## 🛠️ Tech Stack
+- **Frontend:** HTML, CSS, JavaScript  
+- **Backend:** Flask (Python)  
+- **Database:** SQLite (default)  
+- **Other:** Bootstrap, FontAwesome  
+
+---
+
+## ⚙️ Installation & Setup
+
+### 1. Clone this repo
+```bash
+git clone https://github.com/your-username/online-notes-sharing-platform.git
+cd online-notes-sharing-platform
+>>>>>>> c239ce944be56a473e4022a4cca6b7727f30e128
